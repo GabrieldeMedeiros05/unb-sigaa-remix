@@ -1,0 +1,98 @@
+/* ==========================================================
+   SIDEBAR LATERAL DESLIZANTE - SIGAA REMIX (FIX CORTE CABEÇALHO)
+   ========================================================== */
+
+/* 1. Botão Hambúrguer Fixo no Topo */
+#zen-sidebar-trigger {
+  position: fixed !important;
+  top: 10px !important;
+  left: 10px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  font-size: 22px !important;
+  line-height: 42px !important;
+  text-align: center !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  z-index: 2000001 !important; /* Sempre acima do cabeçalho */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  user-select: none !important;
+  transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+
+#zen-sidebar-trigger:hover {
+  background-color: #334155 !important;
+  transform: scale(1.05) !important;
+}
+
+/* 2. Sidebar como elemento flutuante de tela inteira */
+body > #menu-dropdown,
+html body #menu-dropdown {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 260px !important;
+  height: 100vh !important;
+  background-color: #1e293b !important;
+  box-shadow: 6px 0 24px rgba(0, 0, 0, 0.4) !important;
+  z-index: 2000000 !important; /* Passa por cima de qualquer cabeçalho */
+  transform: translateX(-100%) !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding-top: 65px !important;
+  overflow-y: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. Abertura ao ficar ativo ou em hover direto */
+body > #menu-dropdown.zen-active,
+html body #menu-dropdown.zen-active,
+body > #menu-dropdown:hover {
+  transform: translateX(0) !important;
+}
+
+/* 4. Organização Vertical do JSCookMenu */
+body #menu-dropdown table,
+body #menu-dropdown tbody,
+body #menu-dropdown tr,
+body #menu-dropdown td {
+  display: block !important;
+  width: 100% !important;
+  float: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 5. Submenus Flutuantes */
+body #menu-dropdown:not(.zen-active):not(:hover) .ThemeOfficeSubMenu,
+body #menu-dropdown:not(.zen-active):not(:hover) [id*="SubMenu"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.ThemeOfficeSubMenu {
+  position: fixed !important;
+  left: 260px !important;
+  background-color: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.3) !important;
+  z-index: 2000002 !important;
+}
+
+/* ==========================================================
+   DESLOCAMENTO DO CABEÇALHO PARA ABRIR ESPAÇO AO HAMBÚRGUER
+   ========================================================== */
+
+/* 1. Empurra o cabeçalho superior para a direita */
+#info-sistema,
+#painel-usuario {
+  padding-left: 60px !important; /* Cria um recuo limpo para o botão de 42px + margem */
+  box-sizing: border-box !important;
+}
+
+/* 2. Garante alinhamento visual correto dos dados do usuário */
+#painel-usuario .usuario,
+#info-sistema h1 {
+  margin-left: 0 !important;
+}

@@ -99,3 +99,50 @@ a.fonteMenor{
 #painel-erros ul.erros{
     background: none;
 }
+
+/* ==========================================================
+   SIGAA REMIX - SIDEBAR LATERAL DESLIZANTE
+   ========================================================== */
+
+body #menu-dropdown,
+html body #portal-docente #menu-dropdown {
+  position: fixed !important;
+  top: 0 !important;
+  left: -235px !important; /* Deixa a aba de 25px visível na borda */
+  width: 260px !important;
+  height: 100vh !important;
+  background-color: #ffffff !important;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15) !important;
+  z-index: 999999 !important;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding-top: 25px !important;
+  overflow-y: auto !important;
+  border-right: 5px solid #0284c7 !important;
+}
+
+/* Expansão ao passar o mouse */
+body #menu-dropdown:hover,
+html body #portal-docente #menu-dropdown:hover {
+  left: 0 !important;
+}
+
+/* Força empilhamento vertical das tabelas do JSCookMenu */
+body #menu-dropdown table,
+body #menu-dropdown tbody,
+body #menu-dropdown tr,
+body #menu-dropdown td {
+  display: block !important;
+  width: 100% !important;
+  float: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Ajuste fino para os submenus flutuantes */
+.ThemeOfficeSubMenu {
+  position: fixed !important;
+  left: 260px !important;
+  background-color: #ffffff !important;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid #e2e8f0 !important;
+  z-index: 1000000 !important;
+}

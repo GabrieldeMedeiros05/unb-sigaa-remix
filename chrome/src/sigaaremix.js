@@ -799,3 +799,61 @@ function executar (){
 
 //Executar tema
 executar ();
+
+// Injeta o Hambúrguer e move a Sidebar para a raiz do BODY (evita cortes de layout)
+(function setupSidebar() {
+  const init = () => {
+    let menuDropdown = document.getElementById('menu-dropdown');
+    
+    if (menuDropdown) {
+      // 1. Move a sidebar para o <body> direto para não ser ceifada pelo cabeçalho
+      if (menuDropdown.parentNode !== document.body) {
+        document.body.appendChild(menuDropdown);
+      }
+
+      // 2. Injeta o hambúrguer fixo se ainda não existir
+      if (!document.getElementById('zen-sidebar-trigger')) {
+        const trigger = document.createElement('div');
+        trigger.id = 'zen-sidebar-trigger';
+        trigger.innerHTML = '☰';
+        trigger.title = 'Alternar Menu';
+        document.body.appendChild(trigger);
+      }
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Alterna a classe ao clicar no hambúrguer
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('#zen-sidebar-trigger');
+    const menuDropdown = document.getElementById('menu-dropdown');
+
+    if (trigger && menuDropdown) {
+      e.stopPropagation();
+      menuDropdown.classList.toggle('zen-active');
+      return;
+    }
+
+    // Clique fora fecha
+    if (menuDropdown && menuDropdown.classList.contains('zen-active')) {
+      if (!e.target.closest('#menu-dropdown') && !e.target.closest('.ThemeOfficeSubMenu')) {
+        menuDropdown.classList.remove('zen-active');
+      }
+    }
+  });
+
+  // Expande ao passar o mouse no botão
+  document.addEventListener('mouseover', (e) => {
+    const trigger = e.target.closest('#zen-sidebar-trigger');
+    const menuDropdown = document.getElementById('menu-dropdown');
+
+    if (trigger && menuDropdown) {
+      menuDropdown.classList.add('zen-active');
+    }
+  });
+})();
