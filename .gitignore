@@ -1,0 +1,14 @@
+# Pasta com os arquivos fonte e compilação do LaTeX
+latex/
+
+# Caso tenha gerado algum zip
+*.zip
+
+# Arquivos temporários do LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
