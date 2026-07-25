@@ -885,7 +885,10 @@ function dispararAcaoOuURL(comandoAcao) {
   }
 }
 
-function construirSubMenuHTML(itensArray, container) {
+/**
+ * Renderiza recursivamente itens e sub-grupos em profundidade arbitrária (N níveis)
+ */
+function construirSubMenuHTML(itensArray, container, nivel = 1) {
   if (!Array.isArray(itensArray)) return;
 
   itensArray.forEach(subItem => {
@@ -898,11 +901,15 @@ function construirSubMenuHTML(itensArray, container) {
 
     const textoLimpo = decodificarHTML(textoRaw);
 
+    // 1. Caso seja um Link Final
     if (acaoRaw && typeof acaoRaw === 'string') {
       const a = document.createElement('a');
       a.textContent = textoLimpo;
       a.href = '#';
       a.className = 'sigaa-remix-item-link';
+      // Recuo dinâmico proporcional ao nível
+      a.style.paddingLeft = `${20 + (nivel * 12)}px`;
+      
       a.onclick = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -910,14 +917,53 @@ function construirSubMenuHTML(itensArray, container) {
       };
       container.appendChild(a);
     } 
+    // 2. Caso seja um Subgrupo (possui filhos)
     else if (subItem.length > 5) {
-      const tituloGrupo = document.createElement('div');
-      tituloGrupo.className = 'sigaa-subgroup-title';
-      tituloGrupo.textContent = textoLimpo;
-      container.appendChild(tituloGrupo);
+      const wrapper = document.createElement('div');
+      wrapper.className = 'sigaa-remix-subgroup-wrapper';
 
+      const btn = document.createElement('button');
+      btn.className = `sigaa-remix-subgroup-btn nivel-${nivel}`;
+      btn.type = 'button';
+      btn.style.paddingLeft = `${12 + (nivel * 10)}px`;
+      btn.innerHTML = `<span>${textoLimpo}</span> <span class="sigaa-remix-sub-arrow">▸</span>`;
+
+      const subContainer = document.createElement('div');
+      subContainer.className = 'sigaa-accordion-sub-nested';
+      subContainer.style.display = 'none';
+
+      // Chama a si mesmo incrementando o nível de profundidade
       const filhos = subItem.slice(5);
-      construirSubMenuHTML(filhos, container);
+      construirSubMenuHTML(filhos, subContainer, nivel + 1);
+
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const estaAberto = subContainer.style.display === 'block';
+
+        // Fecha APENAS os irmãos diretos no mesmo nível (sem fechar os pais ou avós)
+        Array.from(container.children).forEach(child => {
+          if (child !== wrapper && child.classList?.contains('sigaa-remix-subgroup-wrapper')) {
+            const innerSub = child.querySelector(':scope > .sigaa-accordion-sub-nested');
+            const innerArrow = child.querySelector(':scope > .sigaa-remix-subgroup-btn .sigaa-remix-sub-arrow');
+            if (innerSub) innerSub.style.display = 'none';
+            if (innerArrow) innerArrow.textContent = '▸';
+          }
+        });
+
+        if (!estaAberto) {
+          subContainer.style.display = 'block';
+          btn.querySelector('.sigaa-remix-sub-arrow').textContent = '▾';
+        } else {
+          subContainer.style.display = 'none';
+          btn.querySelector('.sigaa-remix-sub-arrow').textContent = '▸';
+        }
+      };
+
+      wrapper.appendChild(btn);
+      wrapper.appendChild(subContainer);
+      container.appendChild(wrapper);
     }
   });
 }
