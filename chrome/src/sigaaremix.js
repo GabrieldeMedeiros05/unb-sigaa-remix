@@ -305,29 +305,27 @@ function executar (){
 
     //Evitar bug de redimensionamento
     xcss('#container','minWidth','68em');
-    //Ocultar plano de fundo
-    //xcss('#container','height','100vh');
 
     //correção do tamanho do texto em atualizações da turma
     xcss('#atualizacoes-turma','fontSize',tamanhoFonte2);
 
     //Remoção do fundo na barra de semestre, 2020.1
-    xcss(/*regra:*/'#main-docente table td',/*propriedade:*/'background',/*valor:*/corTransparente);
+    xcss('#main-docente table td','background',corTransparente);
 
-    // Mudar cor do fundo da disciplina na lista de componente curricular, que funciona como uma colorida, uma não para melhor visualizar
-    xcss('#main-docente tr.odd','background','#f5f5f5'); //cor cinza de contraste
+    // Mudar cor do fundo da disciplina na lista de componente curricular
+    xcss('#main-docente tr.odd','background','#f5f5f5');
 
     // Mudar fundo da tag TH que é usada em uma barra
     xcss('#main-docente thead th','background',corTransparente);
 
-    //// Mudar tamanho da fonte da tag TH que é usada em uma barra
+    // Mudar tamanho da fonte da tag TH
     xcss('#main-docente thead th','fontSize',tamanhoFonte2);
 
-    //Mudar borda da tag TH que usada é em uma barra
+    //Mudar borda da tag TH
     xcss('#main-docente thead th','borderBottom',brancoBorda1);
 
-    //Correção do tamanho da tag P de paragrafo
-    xcss(/*regra:*/'p',/*propriedade:*/'fontSize',/*valor:*/tamanhoFonte1);
+    //Correção do tamanho da tag P
+    xcss('p','fontSize',tamanhoFonte1);
 
     //Correção tamanho de letras em Turmas do Semestre e Minhas Atividades
     xcss('#main-docente .simple-panel h4','fontSize',tamanhoFonte1);
@@ -343,8 +341,7 @@ function executar (){
 
     ///muda fundo da aréa ensino,extensão,bolsas,..
     xcss('#menu-dropdown','background',cor2);
-    xcss('#menu-dropdown','borderBottom',"1px solid" + cor3);
-    //Adicionar sombra a aba de cima
+    // xcss('#menu-dropdown','borderBottom',"1px solid" + cor3);
     xcss('#menu-dropdown',"boxShadow", sombra1);
     xcss('#painel-usuario',"boxShadow", sombra1);
 
@@ -352,8 +349,6 @@ function executar (){
     xcss('.ThemeOfficeMainItem','background',cor2);
     xcss('.ThemeOfficeMainItem','color',corFonteClara1);
     xcss('.ThemeOfficeMainItem','textAlign',"center");
-    //xcss('.ThemeOfficeMainItem','borderLeft',"2px solid" + cor3);
-    //xcss('.ThemeOfficeMainItem','borderRight',"2px solid" + cor3);
     xcss('.ThemeOfficeMainItem','borderBottom',"5px solid" + cor2);
     xcss('.ThemeOfficeMainItem','borderTop',"5px solid" + cor2);
     xcss('.ThemeOfficeMainItem','paddingLeft','15px');
@@ -362,7 +357,6 @@ function executar (){
     //Remover icones estranhos do menu
     xcss('td.ThemeOfficeMenuItemLeft img','display','none');
     xcss('td.ThemeOfficeMenuFolderLeft img','display','none');
-
 
     //menu
     xcss('.ThemeOfficeMenuItem','background',cor1);
@@ -373,10 +367,9 @@ function executar (){
 
     //Remover o fundo de avaliação institucional e da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','background',corTransparente);
-    //Melhorar margem de avaliação institucional e da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','margin','8px');
 
-    //Mudar cor do fundo da área de texto da atualizações de turma para transparente
+    //Mudar cor do fundo da área de texto da atualizações de turma
     xcss('.subFormulario','background',corTransparente);
 
     //Mudar cor do fundo da área de turmas para branco e adicionar borda
@@ -394,9 +387,8 @@ function executar (){
     xcss('.foto','margin','10px');
     xcss('.foto img','borderRadius', '4px');
 
-    //Remover imagem de telefone antigo inutil
+    //Remover imagem de telefone antigo
     xsrc('img','https://sigaa.unb.br/sigaa/img/celular.jpg','');
-    //Aumentar a area ocupada na horizontal do relatório de notas do aluno
     xcss('#relatorio-paisagem-container',"width", '90%');
     xcss('#relatorio-paisagem-container',"minWidth", '60em');
 
@@ -409,9 +401,6 @@ function executar (){
     xcss('#relatorio-cabecalho','border',brancoBorda1);
     xcss('#relatorio-cabecalho','borderRadius',arrendondamentoBorda1);
 
-    //console.log(window.location.href);
-
-    //Correção de bug nos botões no menu da turma virtual
     xcss('.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default','height','auto');
     xcss('.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default','fontSize','14px');
 
@@ -419,31 +408,20 @@ function executar (){
     removerTexto ('div > a:link', 'Portal do Discente');
 
     //Remover texto de links quebrados
-    removerTexto ('p > a:link', `
-					Calendário Acadêmico de Graduação
-					`);
-    removerTexto ('p > a:link', `
-				Regulamento dos Cursos de Graduação
-				`);
+    removerTexto ('p > a:link', `Calendário Acadêmico de Graduação`);
+    removerTexto ('p > a:link', `Regulamento dos Cursos de Graduação`);
 
   }
   //Consultar indices acadêmicos
   else if (enderecosIndicesAcademicos){
-    //Mudar fonte
     document.body.style.fontFamily = fontePadrao;
-    //Mudar tamanho da fonte para o tamanho normal
     document.body.style.fontSize = tamanhoFonte1;
 
-    //Remoção do fundo
     xcss('html.background, body.background','background','white');
-    //Aumento da ocupação da página na horizontal
     xcss('#relatorio-container','width','70%');
     xcss('#relatorio-container','minWidth','50em');
 
-    //Mudar tamanho da letra rodapé
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
-
-    //Mudar as bordas
     xcss('#relatorio-rodape','border',brancoBorda1);
     xcss('#relatorio-rodape','borderRadius',arrendondamentoBorda1);
     xcss('#relatorio-cabecalho','border',brancoBorda1);
@@ -459,25 +437,18 @@ function executar (){
 
     xcss('#container','minWidth','60em');
 
-    //Melhorar o acessar turma virtual
     xcss('.infoAltRem','background', corTransparente);
     xcss('.infoAltRem','border', 'none');
 
-
-    //Melhorar tamanho da letra
     xcss('table.listagem, table.subListagem','fontSize',tamanhoFonte2);
     xcss('div.infoAltRem','fontSize','18px');
-    //Melhorar a margem
     xcss('table.listagem, table.subListagem','width','90%');
 
-    //Mudar barras
     xcss('table.listagem > tfoot, table.listagem > tfoot td','background',cor1);
     xcss('table.listagem > tfoot, table.listagem > tfoot td','borderRadius',"2px");
 
-    //Remover Portal do dicente/Turma Virtual de baixo
     removerTexto ('div> a:link', 'Portal do Discente');
     removerTexto ('div> a:link', 'Turma Virtual');
-    //Removerborda
     xcss('table.listagem, table.subListagem','border',"none");
 
   }
@@ -487,7 +458,6 @@ function executar (){
     corrigirFonte();
     mudancasBarraDeCima();
     xcss('label','fontSize', '16px');
-    //Melhorar tamanho de texto na área de equivalências
     xcss('table.listagem#lista-turmas-curriculo > tbody tr.disciplina.no-hover td','fontSize', '1em');
   }
   //Correção de Página genéricas
@@ -508,7 +478,6 @@ function executar (){
    #conteudo {
      margin: 1em;
    }
-   /* Remover bordar Portal Público.... */
    #info-sistema span.acessibilidade{
      border: none !important;
    }
@@ -523,7 +492,6 @@ function executar (){
 
     carregarCSS("css/caixapostal.css")
 
-    //Substituir nome SIGAA por SIGAA Remix
     substituirTexto('#info-sistema h1','all','SIGAA Remix');
   }
   //Correção de Página genéricas
@@ -591,7 +559,6 @@ function executar (){
  carregarCSS("css/botao.css")
 
  //Botão de ativar e desativar
- // Criar botão
  var buttonPower = document.createElement("button");
  buttonPower.setAttribute("class", "botaoTema");
  if (ativado == 'false'){
@@ -607,7 +574,6 @@ function executar (){
  buttonPower.style.backgroundImage = 'url(' + xurl("img/power-white.svg") + ')';
  buttonPower.style.backgroundPosition = '2% 50%';
 
- // Inserir Botão
  document.getElementById("idBotoes").appendChild(buttonPower);
 
  buttonPower.addEventListener ("click", function() {
@@ -621,7 +587,6 @@ function executar (){
    }
    document.location.reload(true);
  });
- //Fim botão de ativar e desativar
 
   //Botão do github
   var buttonGithub = document.createElement("button");
@@ -723,7 +688,6 @@ function executar (){
   lerTemas ();
 
   //Botões de customização de cores
-
   carregarCSS("css/botaocor.css")
 
   var botaoCor1 = document.createElement("INPUT");
@@ -782,8 +746,6 @@ function executar (){
   `);
   divBotoesCor.appendChild(botaoCorAplicar);
 
-  //Fim de botões de customização de cores
-
   //Esconder botões na impressão
   var impressaoCss = document.createElement('style');
   impressaoCss.innerHTML = `
@@ -800,60 +762,274 @@ function executar (){
 //Executar tema
 executar ();
 
-// Injeta o Hambúrguer e move a Sidebar para a raiz do BODY (evita cortes de layout)
-(function setupSidebar() {
-  const init = () => {
-    let menuDropdown = document.getElementById('menu-dropdown');
-    
-    if (menuDropdown) {
-      // 1. Move a sidebar para o <body> direto para não ser ceifada pelo cabeçalho
-      if (menuDropdown.parentNode !== document.body) {
-        document.body.appendChild(menuDropdown);
-      }
 
-      // 2. Injeta o hambúrguer fixo se ainda não existir
-      if (!document.getElementById('zen-sidebar-trigger')) {
-        const trigger = document.createElement('div');
-        trigger.id = 'zen-sidebar-trigger';
-        trigger.innerHTML = '☰';
-        trigger.title = 'Alternar Menu';
-        document.body.appendChild(trigger);
-      }
-    }
-  };
+// --- LÓGICA DA SIDEBAR RETRÁTIL E MENU CEBRASPE ---
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+function decodificarHTML(texto) {
+  if (!texto) return '';
+  const txt = document.createElement('textarea');
+  txt.innerHTML = texto;
+  return txt.value.replace(/<[^>]*>?/gm, '').trim();
+}
+
+function parseJSArrayString(str) {
+  let index = 0;
+
+  function parseValue() {
+    skipWhitespace();
+    if (index >= str.length) return null;
+    if (str[index] === '[') return parseArray();
+    if (str[index] === '{') return parseObject();
+    if (str[index] === "'" || str[index] === '"') return parseString();
+    return parseLiteral();
   }
 
-  // Alterna a classe ao clicar no hambúrguer
-  document.addEventListener('click', (e) => {
-    const trigger = e.target.closest('#zen-sidebar-trigger');
-    const menuDropdown = document.getElementById('menu-dropdown');
+  function skipWhitespace() {
+    while (index < str.length && /\s/.test(str[index])) index++;
+  }
 
-    if (trigger && menuDropdown) {
-      e.stopPropagation();
-      menuDropdown.classList.toggle('zen-active');
-      return;
+  function parseArray() {
+    index++;
+    const arr = [];
+    skipWhitespace();
+    while (index < str.length && str[index] !== ']') {
+      if (str[index] === ',') { index++; skipWhitespace(); continue; }
+      arr.push(parseValue());
+      skipWhitespace();
+      if (str[index] === ',') { index++; skipWhitespace(); }
     }
+    if (str[index] === ']') index++;
+    return arr;
+  }
 
-    // Clique fora fecha
-    if (menuDropdown && menuDropdown.classList.contains('zen-active')) {
-      if (!e.target.closest('#menu-dropdown') && !e.target.closest('.ThemeOfficeSubMenu')) {
-        menuDropdown.classList.remove('zen-active');
+  function parseObject() {
+    while (index < str.length && str[index] !== '}') index++;
+    if (str[index] === '}') index++;
+    return null;
+  }
+
+  function parseString() {
+    const quote = str[index++];
+    let val = '';
+    while (index < str.length) {
+      if (str[index] === '\\') { index++; val += str[index]; }
+      else if (str[index] === quote) { index++; break; }
+      else { val += str[index]; }
+      index++;
+    }
+    return val;
+  }
+
+  function parseLiteral() {
+    let start = index;
+    while (index < str.length && !/[,\s\]\}]/.test(str[index])) index++;
+    let raw = str.substring(start, index).trim();
+    if (raw === 'null') return null;
+    if (raw === 'true') return true;
+    if (raw === 'false') return false;
+    return raw;
+  }
+
+  return parseValue();
+}
+
+function obterMatrizMenuNativo() {
+  const scripts = document.querySelectorAll('script');
+  for (let script of scripts) {
+    const conteudo = script.textContent || script.innerText || '';
+    if (conteudo.includes('menu_discente') || conteudo.includes('menu_form_menu')) {
+      try {
+        let idx = conteudo.indexOf('var menu_form_menu_discente_discente_menu =');
+        if (idx === -1) idx = conteudo.indexOf('menu_form_menu_discente_discente_menu =');
+        
+        if (idx !== -1) {
+          let inicio = conteudo.indexOf('[', idx);
+          let fim = conteudo.lastIndexOf('];');
+          if (inicio !== -1 && fim !== -1) {
+            let trecho = conteudo.substring(inicio, fim + 1);
+            return parseJSArrayString(trecho);
+          }
+        }
+      } catch (err) {
+        console.error('SIGAA Remix: Erro no parser:', err);
       }
     }
+  }
+  return null;
+}
+
+function dispararAcaoOuURL(comandoAcao) {
+  if (!comandoAcao) return;
+
+  if (comandoAcao.indexOf('http://') === 0 || comandoAcao.indexOf('https://') === 0) {
+    window.location.href = comandoAcao;
+    return;
+  }
+
+  const form = document.getElementById('menu:form_menu_discente') || 
+               document.forms['menu:form_menu_discente'] || 
+               document.querySelector('form[action*="discente.jsf"]') ||
+               document.forms[0];
+
+  if (form) {
+    let inputAction = form.querySelector('input[name="jscook_action"]');
+    if (!inputAction) {
+      inputAction = document.createElement('input');
+      inputAction.type = 'hidden';
+      inputAction.name = 'jscook_action';
+      form.appendChild(inputAction);
+    }
+    
+    inputAction.value = comandoAcao;
+    form.submit();
+  }
+}
+
+function construirSubMenuHTML(itensArray, container) {
+  if (!Array.isArray(itensArray)) return;
+
+  itensArray.forEach(subItem => {
+    if (!Array.isArray(subItem) || subItem.length < 2) return;
+
+    const textoRaw = subItem[1];
+    const acaoRaw = subItem[2];
+
+    if (!textoRaw || textoRaw === 'null') return;
+
+    const textoLimpo = decodificarHTML(textoRaw);
+
+    if (acaoRaw && typeof acaoRaw === 'string') {
+      const a = document.createElement('a');
+      a.textContent = textoLimpo;
+      a.href = '#';
+      a.className = 'sigaa-remix-item-link';
+      a.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dispararAcaoOuURL(acaoRaw);
+      };
+      container.appendChild(a);
+    } 
+    else if (subItem.length > 5) {
+      const tituloGrupo = document.createElement('div');
+      tituloGrupo.className = 'sigaa-subgroup-title';
+      tituloGrupo.textContent = textoLimpo;
+      container.appendChild(tituloGrupo);
+
+      const filhos = subItem.slice(5);
+      construirSubMenuHTML(filhos, container);
+    }
+  });
+}
+
+function renderizarSidebarRemix() {
+  let sidebar = document.getElementById('sigaa-remix-sidebar');
+  if (!sidebar) {
+    sidebar = document.createElement('aside');
+    sidebar.id = 'sigaa-remix-sidebar';
+    document.body.appendChild(sidebar);
+  }
+
+  // Se já tiver populado o accordion, interrompe para não duplicar
+  if (sidebar.querySelector('.sigaa-remix-accordion-container')) return true;
+
+  const matrizGlobal = obterMatrizMenuNativo();
+
+  // Esconde a área de dropdown nativa antiga apenas quando os dados forem lidos
+  const menuAntigo = document.getElementById('menu-dropdown');
+  if (menuAntigo) {
+    menuAntigo.style.display = 'none';
+  }
+
+  if (!Array.isArray(matrizGlobal) || matrizGlobal.length === 0) return false;
+
+  const containerAccordion = document.createElement('div');
+  containerAccordion.className = 'sigaa-remix-accordion-container';
+
+  matrizGlobal.forEach((opcaoModulo) => {
+    if (!Array.isArray(opcaoModulo) || opcaoModulo.length < 2) return;
+
+    const nomeModulo = decodificarHTML(opcaoModulo[1]);
+    const subItens = opcaoModulo.slice(5);
+
+    const itemModulo = document.createElement('div');
+    itemModulo.className = 'sigaa-remix-section';
+
+    const header = document.createElement('button');
+    header.className = 'sigaa-remix-header-btn';
+    header.type = 'button';
+    header.innerHTML = `<span>${nomeModulo}</span> <span class="sigaa-remix-arrow">▼</span>`;
+
+    const subContainer = document.createElement('div');
+    subContainer.className = 'sigaa-accordion-sub';
+    subContainer.style.display = 'none';
+
+    construirSubMenuHTML(subItens, subContainer);
+
+    header.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const estaAberto = subContainer.style.display === 'block';
+
+      sidebar.querySelectorAll('.sigaa-accordion-sub').forEach(el => el.style.display = 'none');
+      sidebar.querySelectorAll('.sigaa-remix-arrow').forEach(el => el.textContent = '▼');
+
+      if (!estaAberto) {
+        subContainer.style.display = 'block';
+        header.querySelector('.sigaa-remix-arrow').textContent = '▲';
+      }
+    };
+
+    itemModulo.appendChild(header);
+    itemModulo.appendChild(subContainer);
+    containerAccordion.appendChild(itemModulo);
   });
 
-  // Expande ao passar o mouse no botão
-  document.addEventListener('mouseover', (e) => {
-    const trigger = e.target.closest('#zen-sidebar-trigger');
-    const menuDropdown = document.getElementById('menu-dropdown');
+  sidebar.appendChild(containerAccordion);
+  return true;
+}
 
-    if (trigger && menuDropdown) {
-      menuDropdown.classList.add('zen-active');
+(function setupSidebarRemix() {
+  const iniciar = () => {
+    let trigger = document.getElementById('zen-sidebar-trigger');
+    if (!trigger) {
+      trigger = document.createElement('div');
+      trigger.id = 'zen-sidebar-trigger';
+      trigger.innerHTML = '☰';
+      trigger.title = 'Alternar Menu';
+      
+      trigger.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let sidebar = document.getElementById('sigaa-remix-sidebar');
+        if (sidebar) {
+          sidebar.classList.toggle('zen-active');
+        }
+      };
+      
+      document.body.appendChild(trigger);
+    }
+
+    renderizarSidebarRemix();
+  };
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    iniciar();
+  } else {
+    document.addEventListener('DOMContentLoaded', iniciar);
+  }
+
+  // Tenta reexecutar em retardo caso o script JSF do SIGAA demore a carregar no DOM
+  setTimeout(iniciar, 300);
+  setTimeout(iniciar, 800);
+
+  document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('sigaa-remix-sidebar');
+    if (sidebar && sidebar.classList.contains('zen-active')) {
+      if (!e.target.closest('#sigaa-remix-sidebar') && !e.target.closest('#zen-sidebar-trigger')) {
+        sidebar.classList.remove('zen-active');
+      }
     }
   });
 })();
